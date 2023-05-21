@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit IndexDetail{% endblock %}
+
+{% block body %}
+    <h1>Edit IndexDetail</h1>
+
+    {{ include('index_detail/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_index_detail_index') }}">back to list</a>
+
+    {{ include('index_detail/_delete_form.html.twig') }}
+{% endblock %}

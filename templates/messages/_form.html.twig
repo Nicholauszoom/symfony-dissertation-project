@@ -1,0 +1,28 @@
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button  class="btn-circle btn-lg btn-cyan float-end text-white">
+
+        {# {{ button_label|default('Save') }} #}
+        <i class="mdi mdi-send fs-3"></i
+    </button>
+
+     {# <div class="border-top">
+                    <div class="card-body">
+                      <button type="button" class="btn btn-primary">
+                         {{ button_label|default('Save') }}
+                      </button>
+                    </div>
+                  </div> #}
+
+
+                   {# <div class="col-5 row-4">
+                      <a
+                      type="submit"
+                        class="btn-circle btn-lg btn-cyan float-end text-white"
+                        href="javascript:void(0)"
+                        ><i class="mdi mdi-send fs-3"></i
+                      >
+                      
+                      </a>
+                    </div> #}
+{{ form_end(form) }}

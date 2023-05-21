@@ -1,0 +1,187 @@
+<?php $user = current_user(); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><?php if (!empty($page_title))
+           echo remove_junk($page_title);
+            elseif(!empty($user))
+           echo ucfirst($user['name']);
+            else echo "UDSM NoticeBoard | ";?>
+    </title>
+
+    <!-- Favicons -->
+    <link href="https://www.udsm.ac.tz/web/themes/udsm/layouts/main/img/logo_ud.png" rel="icon">
+    <link href="https://www.udsm.ac.tz/web/themes/udsm/layouts/main/img/logo_ud.png">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.min.css" />
+    <link rel="stylesheet" href="libs/css/main.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+<body>
+{#<?php  if ($session->isUserLoggedIn(true)): ?>#}
+<header id="header">
+
+    <div class="header-conteant">
+        <div class="logo pull-left">
+            <img class="img-avatar img-circle" src="https://udsm.ac.tz//upload/galleryphoto/20210428_081523_177_udsm%20logo.png" alt="" />
+        </div>
+        <div class="header-date pull-left">
+            <strong><?php echo date("F j, Y, g:i a");?></strong>
+        </div>
+        <div class="pull-right clearfix">
+            <ul class="info-menu list-inline list-unstyled">
+                <li class="profile">
+                    <a href="#" data-toggle="dropdown" class="toggle" aria-expanded="false">
+                        <img src="" alt="user-image" class="img-circle img-inline">
+{#                        <span><?php echo remove_junk(ucfirst($user['name'])); ?> <i class="caret"></i></span>#}
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+{#                            <a href="profile.php?id=<?php echo (int)$user['id'];?>">#}
+                            <a href="">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a href="edit_account.php" title="edit account">
+                                <i class="glyphicon glyphicon-cog"></i>
+                                Settings
+                            </a>
+                        </li>
+                        <li class="last">
+                            <a href="logout.php">
+                                <i class="glyphicon glyphicon-off"></i>
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<div class="sidebar">
+    <?php include_once('base.html.twig')
+{#    <?php if($user['user_level'] === '1'): ?>#}
+{#    <!-- admin menu -->#}
+{#    <?php include_once('admin_menu.php');?>#}
+
+{#    <?php elseif($user['user_level'] === '2'): ?>#}
+{#    <!-- Special user -->#}
+{#    <?php include_once('special_menu.php');?>#}
+
+{#    <?php elseif($user['user_level'] === '3'): ?>#}
+{#    <!-- User menu -->#}
+{#    <?php include_once('user_menu.php');?>#}
+
+{#    <?php endif;?>#}
+
+</div>
+{#<?php endif;?>#}
+
+<div class="page">
+    <div class="container-fluid">
+
+
+   <span class="inline-flex align-baseline">
+              <span class="leading-normal">
+              <i class="far fa-edit h-5 w-5 fill-current text-gray-500 "></i>
+              </span>
+              <span class="ml-2 text-gray-700">Student</span>
+            </span>
+                                <span class="w-10 text-center py-1 text-xs font-semibold rounded-full text-gray-700 bg-gray-300">
+             
+            </span>
+                            </a>
+                            <a href="/technician" class="mt-2 -mx-3 px-3 py-2 flex items-center justify-between text-sm font-medium hover:bg-gray-200 rounded-lg">
+            <span class="inline-flex align-baseline">
+              <span class="leading-normal">
+              <i class="far fa-user-circle h-5 w-5 fill-current text-gray-500 "></i>
+              </span>
+              <span class="ml-2 text-gray-700">Technician</span>
+            </span>
+                                <span class="w-10 text-center py-1 text-xs font-semibold rounded-full text-gray-700 bg-gray-300">
+              {# {{technicians|length}} #}
+            </span>
+                            </a>
+                            <a href="/building" class="mt-2 -mx-3 px-3 py-2 flex items-center justify-between text-sm font-medium hover:bg-gray-200 rounded-lg">
+            <span class="inline-flex align-baseline">
+              <span class="leading-normal">
+              <i class="far fa-check-circle h-5 w-5 fill-current text-gray-500 "></i>
+              </span>
+              <span class="ml-2 text-gray-700">Building</span>
+            </span>
+                            </a>
+                            <a href="/office" class="mt-2 -mx-3 px-3 py-2 flex items-center justify-between text-sm font-medium hover:bg-gray-200 rounded-lg">
+            <span class="inline-flex align-baseline">
+              <span class="leading-normal">
+              <i class="fas fa-trash h-5 w-5 fill-current text-gray-500 "></i>
+              </span>
+              <span class="ml-2 text-gray-700">Office</span>
+            </span>
+                            </a>
+
+
+                            <a href="/classroom" class="mt-2 -mx-3 px-3 py-2 flex items-center justify-between text-sm font-medium hover:bg-gray-200 rounded-lg">
+            <span class="inline-flex align-baseline">
+              <span class="leading-normal">
+              <i class="fas fa-trash h-5 w-5 fill-current text-gray-500 "></i>
+              </span>
+              <span class="ml-2 text-gray-700">Classroom</span>
+            </span>
+                            </a>
+
+
+
+                            <a href="/messages" class="mt-2 -mx-3 px-3 py-2 flex items-center justify-between text-sm font-medium hover:bg-gray-200 rounded-lg">
+            <span class="inline-flex align-baseline">
+              <span class="leading-normal">
+              <i class="fas fa-trash h-5 w-5 fill-current text-gray-500 "></i>
+              </span>
+              <span class="ml-2 text-gray-700">Messages</span>
+            </span>
+             <span class="w-10 text-center py-1 text-xs font-semibold rounded-full text-gray-700 bg-gray-300">
+              {# {{messages|length}} #}
+            </span>
+                            </a>
+                            <a href="/task" class="mt-2 -mx-3 px-3 py-2 flex items-center justify-between text-sm font-medium hover:bg-gray-200 rounded-lg">
+            <span class="inline-flex align-baseline">
+              <span class="leading-normal">
+              <i class="fas fa-trash h-5 w-5 fill-current text-gray-500 "></i>
+              </span>
+              <span class="ml-2 text-gray-700">Task</span>
+            </span>
+                            </a>
+
+                            <a href="/infrastructure" class="mt-2 -mx-3 px-3 py-2 flex items-center justify-between text-sm font-medium hover:bg-gray-200 rounded-lg">
+            <span class="inline-flex align-baseline">
+              <span class="leading-normal">
+              <i class="fas fa-trash h-5 w-5 fill-current text-gray-500 "></i>
+              </span>
+              <span class="ml-2 text-gray-700">Assets</span>
+            </span>
+                            </a>
+
+                            <a href="#" class="mt-2 -mx-3 px-3 py-2 flex items-center justify-between text-sm font-medium hover:bg-gray-200 rounded-lg">
+            <span class="inline-flex align-baseline">
+              <span class="leading-normal">
+              <i class="fas fa-trash h-5 w-5 fill-current text-gray-500 "></i>
+              </span>
+              <span class="ml-2 text-gray-700">Setting</span>
+            </span>
+                            </a>
+
+                        </div>
+
+                       <h2 class="mt-8 text-xs font-semibold text-gray-600 uppercase tracking-wider"> #}
+{#                            Folders#}
+{#                        </h2>#}
+{#                        <div class="mt-4">#}
+{#                            <a href="#" class=" block text-sm font-medium text-gray-700">Refunds</a>#}
+{#                            <a href="#" class="mt-4 block text-sm font-medium text-gray-700">Discounts</a>#}
+{#                            <a href="#" class="mt-4 block text-sm font-medium text-gray-700">Bugs</a>#}
+{#                        </div>#}

@@ -1,0 +1,140 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Infrastructure{% endblock %}
+
+{% block body %}
+
+
+ <main class="flex-1 flex bg-gray-50">
+                <section class="bg-gray-50 dark:bg-gray-50  w-full">
+                    <div class="sm:w-3/5 w-4/5 mx-auto">
+                    
+
+
+                <a
+                        href="{{ path('app_infrastructure_index') }}"
+                        class="uppercase border border-gray-500 text-lg py-4 px-6 rounded transition transition-all bg-gray-800 text-white hover:bg-white hover:text-gray-800">
+                    Back to list
+                </a>
+            
+
+                        <h1 class="sm:text-5xl md:text-7xl text-4xl font-bold text-center">
+                            {{infrastructure.name }}
+                        </h1>
+
+                        
+
+                        <img
+                                src="{{infrastructure.imagePath }}"
+                                class="rounded-xl w-full shadow-xl"
+                                alt="///"
+                        />
+
+                        <p class="text-xl py-6">
+                            {{ infrastructure.description }}
+                        </p>
+
+                        <p class="text-xl py-6">
+                            Asset no {{ infrastructure.id  }}
+                        </p>
+
+                        {#                {% if app.user %}#}
+
+                        {# edit button #}
+
+                        <a
+                                href="{{ path('app_infrastructure_edit', {'id': infrastructure.id}) }}"
+                                class="bg-green-500 font-bold py-2 px-4 rounded transition-all hover:bg-green-300">
+                            Edit 
+                        </a>
+
+                        {# delete button #}
+                        <a>
+                                
+                            {{ include('infrastructure/_delete_form.html.twig') }}
+                        </a>
+
+                        {#                {% endif %}#}
+
+                    </div>
+
+                    </div>
+                </section>
+            </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{# 
+
+    <h1>Infrastructure</h1>
+
+
+            <div class="mx-auto w-4/5 my-8">
+                <a
+                        href="{{ path('app_infrastructure_index') }}"
+                        class="uppercase border border-gray-500 text-lg py-4 px-6 rounded transition transition-all bg-gray-800 text-white hover:bg-white hover:text-gray-800">
+                    Back to list
+                </a>
+            </div>
+            
+
+
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ infrastructure.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ infrastructure.name }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ infrastructure.description }}</td>
+            </tr>
+            <tr>
+                <th>ImagePath</th>
+                <td>{{ infrastructure.imagePath }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    {# <a href="{{ path('app_infrastructure_index') }}">back to list</a>
+
+    <a href="{{ path('app_infrastructure_edit', {'id': infrastructure.id}) }}">edit</a> #}
+
+
+
+{# 
+<a
+                                        href="{{ path('app_infrastructure_show', {'id': infrastructure.id}) }}"
+                                        class="bg-green-500 font-bold py-2 px-4 rounded transition-all hover:bg-green-300">
+                                    show
+                                </a>
+                                <a
+                                       href="{{ path('app_infrastructure_edit', {'id': infrastructure.id}) }}"
+                                        class="bg-red-500 font-bold py-2 px-4 rounded transition-all hover:bg-red-300">
+                                    edit #}
+                                {# </a> #}
+    
+ 
+    {# {{ include('infrastructure/_delete_form.html.twig') }} #}
+{% endblock %}
