@@ -5,44 +5,34 @@ namespace App\Entity;
 use App\Repository\MessagesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MessagesRepository::class)]
 class Messages
 {
-
-//    use TimestampableEntity;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
     private ?string $title = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
     private ?string $description = null;
 
     #[ORM\Column(length: 255, nullable: true)]
-    #[Assert\NotBlank]
     private ?string $imagePath = null;
 
-    #[ORM\OneToOne(inversedBy: 'messages', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotBlank]
     private ?Infrastructure $infrastructure = null;
 
-    #[ORM\OneToOne(inversedBy: 'messages', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotBlank]
     private ?Classroom $classroom = null;
 
-    #[ORM\OneToOne(inversedBy: 'messages', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'messages')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotBlank]
     private ?Building $building = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
@@ -94,7 +84,7 @@ class Messages
         return $this->infrastructure;
     }
 
-    public function setInfrastructure(Infrastructure $infrastructure): self
+    public function setInfrastructure(?Infrastructure $infrastructure): self
     {
         $this->infrastructure = $infrastructure;
 
@@ -106,7 +96,7 @@ class Messages
         return $this->classroom;
     }
 
-    public function setClassroom(Classroom $classroom): self
+    public function setClassroom(?Classroom $classroom): self
     {
         $this->classroom = $classroom;
 
@@ -118,7 +108,7 @@ class Messages
         return $this->building;
     }
 
-    public function setBuilding(Building $building): self
+    public function setBuilding(?Building $building): self
     {
         $this->building = $building;
 
@@ -136,9 +126,8 @@ class Messages
 
         return $this;
     }
-
-
     public function __toString() {
         return $this->title;
     }
+
 }

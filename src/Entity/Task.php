@@ -36,6 +36,9 @@ class Task
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Technician $techn = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?bool $status = null;
+
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Messages $message = null;
 
@@ -120,5 +123,17 @@ class Task
  
     public function __toString() {
         return $this->name;
+    }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?bool $status): self
+    {
+        $this->status = $status;
+
+        return $this;
     }
 }

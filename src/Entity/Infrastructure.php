@@ -31,12 +31,19 @@ class Infrastructure
     #[ORM\ManyToMany(targetEntity: Classroom::class, mappedBy: 'infrastructure')]
     private Collection $classrooms;
 
-    #[ORM\OneToOne(mappedBy: 'infrastructure', cascade: ['persist', 'remove'])]
-    private ?Messages $messages = null;
+    #[ORM\OneToMany(mappedBy: 'infrastructure', targetEntity: Messages::class, orphanRemoval: true)]
+    private Collection $messages;
+
+    // #[ORM\ManyToOne(inversedBy: 'infrastructure')]
+    // private ?Messages $messages = null;
+
+    // #[ORM\OneToOne(mappedBy: 'infrastructure', cascade: ['persist', 'remove'])]
+    // private ?Messages $messages = null;
 
     public function __construct()
     {
         $this->classrooms = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
 
@@ -109,25 +116,59 @@ class Infrastructure
         return $this;
     }
 
+    // public function getMessages(): ?Messages
+    // {
+    //     return $this->messages;
+    // }
+
+    // public function setMessages(Messages $messages): self
+    // {
+    //     // set the owning side of the relation if necessary
+    //     if ($messages->getInfrastructure() !== $this) {
+    //         $messages->setInfrastructure($this);
+    //     }
+
+    //     $this->messages = $messages;
+
+    //     return $this;
+    // }
+
+    public function __toString() {
+        return $this->name;
+    }
+
     public function getMessages(): ?Messages
     {
         return $this->messages;
     }
 
-    public function setMessages(Messages $messages): self
+    public function setMessages(?Messages $messages): self
     {
-        // set the owning side of the relation if necessary
-        if ($messages->getInfrastructure() !== $this) {
-            $messages->setInfrastructure($this);
-        }
-
         $this->messages = $messages;
 
         return $this;
     }
 
-    public function __toString() {
-        return $this->name;
+    public function addMessage(Messages $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages->add($message);
+            $message->setInfrastructure($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Messages $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getInfrastructure() === $this) {
+                $message->setInfrastructure(null);
+            }
+        }
+
+        return $this;
     }
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\Roles;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -14,6 +15,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 
 class RegistrationFormType extends AbstractType
 {
@@ -25,7 +28,7 @@ class RegistrationFormType extends AbstractType
             'label' => false,
             'attr' => [
                 'autocomplete' => 'firstName',                     
-                'class' => 'required form-control',
+                'class' => 'form-control border-0',
                 'placeholder' => 'First Name'
             ],
         ])
@@ -35,7 +38,7 @@ class RegistrationFormType extends AbstractType
             'label' => false,
             'attr' => [
                 'autocomplete' => 'lastName',                     
-                'class' => 'required form-control',
+                'class' => 'form-control border-0',
                 'placeholder' => 'Last Name'
             ],
         ])
@@ -44,7 +47,7 @@ class RegistrationFormType extends AbstractType
             'label' => false,
             'attr' => [
                 'autocomplete' => 'email',                     
-                'class' => 'required form-control',
+                'class' => 'form-control border-0',
                 'placeholder' => 'Email eg.ardhiuniversity@gmail.com'
             ],
         ])
@@ -53,18 +56,23 @@ class RegistrationFormType extends AbstractType
             'label' => false,
             'attr' => [
                 'autocomplete' => 'registrationNo',                     
-                'class' => 'required form-control',
+                'class' => 'form-control border-0',
                 'placeholder' => 'registrationNo eg.251.../T.20..'
             ],
         ])
-            // ->add('agreeTerms', CheckboxType::class, [
-            //     'mapped' => false,
-            //     'constraints' => [
-            //         new IsTrue([
-            //             'message' => 'You should agree to our terms.',
-            //         ]),
-            //     ],
-            // ])
+//         ->add('roles', EntityType::class, [
+
+//             // looks for choices from this entity
+//             'class' => Roles::class,
+//             // uses the User.username property as the visible option string
+//             // 'choice_label' => 'name',
+// //                 'multiple' => true,
+//              'expanded' => true,
+//             'choice_label' => function ($roles) {
+//                 return $roles->getName();
+//             }
+//             ])
+
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
@@ -72,7 +80,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',                     
-                    'class' => 'required form-control',
+                    'class' => 'form-control border-0',
                     'placeholder' => 'Password'
                 ],
                 'constraints' => [

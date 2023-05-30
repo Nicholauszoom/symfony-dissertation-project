@@ -31,10 +31,38 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/movies/create, roles: ROLE_USER }
-        - { path: ^/movies/edit, roles: ROLE_USER}
-        - { path: ^/movies/delete, roles: ROLE_USER}
-        - { path: ^/profile, roles: ROLE_USER }
+
+
+         #  require ROLE_ADMIN or IS_AUTHENTICATED_FULLY for /admin*
+
+        - { path: ^/register, roles: ROLE_ADMIN }
+        - { path: ^/users, roles: ROLE_ADMIN }
+        - { path: ^/technician/, roles: ROLE_ADMIN }
+        - { path: ^/technician/, roles: ROLE_ADMIN }
+        - { path: ^/task/, roles: ROLE_ADMIN }
+        - { path: ^/building/, roles: ROLE_ADMIN }
+        - { path: ^/infrastructure/, roles: ROLE_ADMIN }
+        - { path: ^/Dashboard, roles: ROLE_ADMIN }
+
+         # require ROLE_USER or IS_AUTHENTICATED_FULLY  FOR USER*
+
+        - { path: ^/messages/new, roles: ROLE_USER }
+
+
+        
+        
+
+
+
+
+
+
+        # - { path: '^/', roles: [IS_AUTHENTICATED_FULLY, ROLE_ADMIN] }
+        #   - { path: ^/register, roles: ROLE_ADMIN }
+        # - { path: ^/movies/create, roles: ROLE_USER }
+        # - { path: ^/movies/edit, roles: ROLE_USER}
+        # - { path: ^/movies/delete, roles: ROLE_USER}
+        # - { path: ^/profile, roles: ROLE_USER }
 
 when@test:
     security:

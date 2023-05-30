@@ -90,11 +90,11 @@ class BuildingController extends AbstractController
         $form =$this->createForm(BuildingFormType::class,$building);
 
         $form->handleRequest($request);
-           $ImagePath = $form->getImagePath('ImagePath')->getData();
+           $ImagePath = $form->get('ImagePath')->getData();
 
            if ($form->isSubmitted() && $form->isValid()) {
                if($ImagePath){
-                   if ($ImagePath->get()!==null){
+                   if ($ImagePath->getImagePath()!==null){
                        if (file_exists(
                            $this->getParameter('kernel.project_dir').$building->getImagePath()
                        )) {

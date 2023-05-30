@@ -1,3 +1,18 @@
+{# {% extends 'base.html.twig' %}
+
+{% block title %}New Roles{% endblock %}
+
+{% block body %}
+    <h1>Create new Roles</h1>
+
+    {{ include('roles/_form.html.twig') }}
+
+    <a href="{{ path('app_roles_index') }}">back to list</a>
+{% endblock %}
+
+ #}
+
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 	<head>
@@ -20,9 +35,9 @@
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
-				      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-				      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-				    <![endif]-->
+		      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		    <![endif]-->
 	</head>
 
 	<body>
@@ -341,14 +356,14 @@
 								</a>
 							</li>
 							{# <li class="sidebar-item">
-														                <a
-														                  class="sidebar-link waves-effect waves-dark sidebar-link"
-														                  href="grid.html"
-														                  aria-expanded="false"
-														                  ><i class="mdi mdi-blur-linear"></i
-														                  ><span class="hide-menu">Full Width</span></a
-														                >
-														              </li> #}
+							                <a
+							                  class="sidebar-link waves-effect waves-dark sidebar-link"
+							                  href="grid.html"
+							                  aria-expanded="false"
+							                  ><i class="mdi mdi-blur-linear"></i
+							                  ><span class="hide-menu">Full Width</span></a
+							                >
+							              </li> #}
 							<li class="sidebar-item">
 								<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 									<i class="mdi mdi-city"></i>
@@ -359,7 +374,7 @@
 										<a
 											href="/building/" class="sidebar-link">
 											{# <i class="mdi mdi-note-outline"></i
-																						                      > #}
+											                      > #}
 											<span class="hide-menu">
 												Building</span>
 										</a>
@@ -368,7 +383,7 @@
 										<a
 											href="/office/" class="sidebar-link">
 											{# <i class="mdi mdi-note-outline"></i
-																						                      > #}
+											                      > #}
 											<span class="hide-menu">
 												Office</span>
 										</a>
@@ -377,7 +392,7 @@
 										<a
 											href="/classroom/" class="sidebar-link">
 											{# <i class="mdi mdi-note-plus"></i
-																						                      > #}
+											                      > #}
 											<span class="hide-menu">
 												Classroom</span>
 										</a>
@@ -385,14 +400,14 @@
 								</ul>
 							</li>
 							{# <li class="sidebar-item">
-														                <a
-														                  class="sidebar-link waves-effect waves-dark sidebar-link"
-														                  href="pages-buttons.html"
-														                  aria-expanded="false"
-														                  ><i class="mdi mdi-relative-scale"></i
-														                  ><span class="hide-menu">Buttons</span></a
-														                >
-														              </li> #}
+							                <a
+							                  class="sidebar-link waves-effect waves-dark sidebar-link"
+							                  href="pages-buttons.html"
+							                  aria-expanded="false"
+							                  ><i class="mdi mdi-relative-scale"></i
+							                  ><span class="hide-menu">Buttons</span></a
+							                >
+							              </li> #}
 							<li class="sidebar-item">
 								<a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
 									<i class="mdi mdi-account"></i>
@@ -403,7 +418,7 @@
 										<a
 											href="" class="sidebar-link">
 											{# <i class="mdi mdi-account-location"></i
-																						                      > #}
+											                      > #}
 											<span class="hide-menu">
 												Staff</span>
 										</a>
@@ -412,7 +427,7 @@
 										<a
 											href="/technician/" class="sidebar-link">
 											{# <i class="mdi mdi-account-location"></i
-																						                      > #}
+											                      > #}
 											<span class="hide-menu">
 												Technician</span>
 										</a>
@@ -421,8 +436,8 @@
 										<a
 											href="/users" class="sidebar-link">
 											{# <
-																						                      i class="mdi mdi-account-location"></
-																						                      > #}
+											                      i class="mdi mdi-account-location"></
+											                      > #}
 											<span class="hide-menu">
 												Student</span>
 										</a>
@@ -431,20 +446,20 @@
 							</li>
 
 							{# <li class="sidebar-item p-3">
-														                <a
-														                  href="https://github.com/wrappixel/matrix-admin-bt5"
-														                  target="_blank"
-														                  class="
-														                    w-100
-														                    btn btn-cyan
-														                    d-flex
-														                    align-items-center
-														                    text-white
-														                  "
-														                  ><i class="mdi mdi-cloud-download font-20 me-2"></i>Download
-														                  Free</a
-														                >
-														              </li> #}
+							                <a
+							                  href="https://github.com/wrappixel/matrix-admin-bt5"
+							                  target="_blank"
+							                  class="
+							                    w-100
+							                    btn btn-cyan
+							                    d-flex
+							                    align-items-center
+							                    text-white
+							                  "
+							                  ><i class="mdi mdi-cloud-download font-20 me-2"></i>Download
+							                  Free</a
+							                >
+							              </li> #}
 						</ul>
 					</nav>
 					<!-- End Sidebar navigation -->
@@ -488,33 +503,14 @@
 					<!-- Start Page Content -->
 					<!-- ============================================================== -->
 						<div class="card"> <div class="card-body wizard-content">
-							<h4 class="card-title">Create New Task</h4>
+							<h4 class="card-title">Create New Role</h4>
 							<h6 class="card-subtitle"></h6>
 
 							<div id="example-form">
 								<h3>Account</h3>
 								<section>
-									{{ form_start(registrationForm) }}
-									{{ form_row(registrationForm.firstName) }}
-									{{ form_row(registrationForm.lastName) }}
-									{{ form_row(registrationForm.email) }}
-									{{ form_row(registrationForm.registrationNo) }}
-									{{ form_row(registrationForm.plainPassword) }}
-									{# {{ form_row(registrationForm.imagePath) }} #}
 
-									{# {{ form_row(registrationForm.agreeTerms) }} #}
-
-									{# <div class="border-top">
-																		                    <div class="card-body"> #}
-										<button type="submit" class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg w-1/5 mt-10 font-extrabold py-4 px-8 rounded-3xl"> Register
-									</button>
-									{# </div>
-																		                  </div> #}
-
-
-									{{ form_end(registrationForm) }}
-
-
+									{{ include('roles/_form.html.twig') }}
 								</section>
 
 							</div>

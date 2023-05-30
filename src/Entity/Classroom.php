@@ -29,7 +29,8 @@ class Classroom
 
 
 
-    #[ORM\OneToOne(inversedBy: 'classroom', cascade: ['persist', 'remove'])]
+    // #[ORM\OneToOne(inversedBy: 'classroom', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'classroom')]
     #[ORM\JoinColumn(nullable: false)]
     #[Assert\NotBlank]
     private ?Building $buildings = null;
@@ -37,12 +38,19 @@ class Classroom
     #[ORM\ManyToMany(targetEntity: Infrastructure::class, inversedBy: 'classrooms')]
     private Collection $infrastructure;
 
-    #[ORM\OneToOne(mappedBy: 'classroom', cascade: ['persist', 'remove'])]
-    private ?Messages $messages = null;
+    #[ORM\OneToMany(mappedBy: 'classroom', targetEntity: Messages::class, orphanRemoval: true)]
+    private Collection $messages;
+
+    // #[ORM\ManyToOne(inversedBy: 'classroom')]
+    // private ?Messages $messages = null;
+
+    // #[ORM\OneToOne(mappedBy: 'classroom', cascade: ['persist', 'remove'])]
+    // private ?Messages $messages = null;
 
     public function __construct()
     {
         $this->infrastructure = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,23 +132,57 @@ class Classroom
         return $this;
     }
 
+    // public function getMessages(): ?Messages
+    // {
+    //     return $this->messages;
+    // }
+
+    // public function setMessages(Messages $messages): self
+    // {
+    //     // set the owning side of the relation if necessary
+    //     if ($messages->getClassroom() !== $this) {
+    //         $messages->setClassroom($this);
+    //     }
+
+    //     $this->messages = $messages;
+
+    //     return $this;
+    // }
+    public function __toString() {
+        return $this->name;
+    }
+
     public function getMessages(): ?Messages
     {
         return $this->messages;
     }
 
-    public function setMessages(Messages $messages): self
+    public function setMessages(?Messages $messages): self
     {
-        // set the owning side of the relation if necessary
-        if ($messages->getClassroom() !== $this) {
-            $messages->setClassroom($this);
-        }
-
         $this->messages = $messages;
 
         return $this;
     }
-    public function __toString() {
-        return $this->name;
+
+    public function addMessage(Messages $message): self
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages->add($message);
+            $message->setClassroom($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Messages $message): self
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getClassroom() === $this) {
+                $message->setClassroom(null);
+            }
+        }
+
+        return $this;
     }
 }

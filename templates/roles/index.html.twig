@@ -1,57 +1,52 @@
-{# {% extends 'base2.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
-{% block title %}New Task{% endblock %}
+{% block title %}Roles index{% endblock %}
 
 {% block body %}
-{#<div class="w-4/5 m-auto text-center">#}
-{#    <div class="py-6 border-b border-gray-200">#}
-{#        <h1 class="text-6xl pt-6 pb-5">#}
-{#            Create Tasks#}
-{#        </h1>#}
+    <h1>Roles index</h1>
 
-{#    {{ include('task/_form.html.twig') }}#}
-{#<div class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg w-1/5 mt-10 font-extrabold py-4 px-8 rounded-3xl">#}
-{#    <a href="{{ path('app_task_index') }}">back to list</a>#}
-{#</div>#}
-{#    </div>#}
-{#</div>#}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Status</th>
+                <th>RoleName</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for role in roles %}
+            <tr>
+                <td>{{ role.id }}</td>
+                <td>{{ role.name }}</td>
+                <td>{{ role.status ? 'Yes' : 'No' }}</td>
+                <td>{{ role.roleName }}</td>
+                <td>
+                    <a href="{{ path('app_roles_show', {'id': role.id}) }}">show</a>
+                    <a href="{{ path('app_roles_edit', {'id': role.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-{# 
-
-    <div class="w-4/5 m-auto text-center">
-        <div class="py-6 border-b border-gray-200">
-            <h1 class="text-6xl pt-6 pb-5">
-                Create Task Details
-            </h1>
-            <div class="m-auto w-4/5 my-8">
-                <a
-                        href="{{ path('app_task_index') }}"
-                        class="uppercase border border-gray-500 text-lg py-4 px-6 rounded transition transition-all bg-gray-800 text-white hover:bg-white hover:text-gray-800">
-                    back to list
-                </a>
-            </div>
-
-            {{ form_start(form) }}
-
-            {{ form_widget(form)}}
-
-            <button
-                    type="submit"
-                    class="uppercase mt-15 bg-blue-500 text-gray-100 text-lg w-1/5 mt-10 font-extrabold py-4 px-8 rounded-3xl">
-                create
-            </button>
+    <a href="{{ path('app_roles_new') }}">Create new</a>
+{% endblock %} #}
 
 
-            {{ form_start(form) }}
-        </div>
-    </div>
-{% endblock %} #} 
+
+
 
 
 
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-  <head>
+   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- Tell the browser to be responsive to screen width -->
@@ -74,11 +69,8 @@
       href="../asset/images/"
     />
     <!-- Custom CSS -->
-    <link
-      href="../asset/libs/jquery-steps/jquery.steps.css"
-      rel="stylesheet"
-    />
-    <link href="../asset/libs/jquery-steps/steps.css" rel="stylesheet" />
+    <link href="../asset/libs/flot/css/float-chart.css" rel="stylesheet" />
+    <!-- Custom CSS -->
     <link href="../dist/css/style.min.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -113,7 +105,7 @@
       <!-- ============================================================== -->
       <!-- Topbar header - style you can find in pages.scss -->
       <!-- ============================================================== -->
-       	<header class="topbar" data-navbarbg="skin5"> <nav class="navbar top-navbar navbar-expand-md navbar-dark">
+     	<header class="topbar" data-navbarbg="skin5"> <nav class="navbar top-navbar navbar-expand-md navbar-dark">
 					<div class="navbar-header" data-logobg="skin5">
 						<!-- ============================================================== -->
 						<!-- Logo -->
@@ -382,7 +374,7 @@
       <!-- ============================================================== -->
       <!-- Left Sidebar - style you can find in sidebar.scss  -->
       <!-- ============================================================== -->
-      <aside class="left-sidebar" data-sidebarbg="skin5">
+    <aside class="left-sidebar" data-sidebarbg="skin5">
         <!-- Sidebar scroll-->
         <div class="scroll-sidebar">
           <!-- Sidebar navigation-->
@@ -550,7 +542,7 @@
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-              <h4 class="page-title">Form Wizard</h4>
+              <h4 class="page-title">Tables</h4>
               <div class="ms-auto text-end">
                 <nav aria-label="breadcrumb">
                   <ol class="breadcrumb">
@@ -574,19 +566,72 @@
           <!-- ============================================================== -->
           <!-- Start Page Content -->
           <!-- ============================================================== -->
-          <div class="card">
-            <div class="card-body wizard-content">
-              <h4 class="card-title">Create New Task</h4>
-              <h6 class="card-subtitle"></h6>
+          <div class="row">
+            <div class="col-12">
              
-                <div id="example-form">
-                  <h3>Account</h3>
-                  <section>
-                    {{ include('task/_form.html.twig') }}
-                  </section>
-                  
+             
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">ROLE Data</h5>
+                  <div class="table-responsive">
+                    <table
+                      id="zero_config"
+                      class="table table-striped table-bordered"
+                    >
+                     <thead>
+            <tr>
+                {# <th>Id</th> #}
+                <th>Name</th> 
+                {# <th>RoleName</th> #}
+                <th>Status</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for role in roles %}
+            <tr>
+              {# ?  <td>{{ role.id }}</td> #}
+                <td>{{ role.name }}</td>
+                 {# <td>{{ role.roleName }}</td> #}
+                <td>{{ role.status ? 'Yes' : 'No' }}</td>
+               
+                          <td>
+
+                         
+                          <a
+                                       href="{{ path('app_roles_show', {'id': role.id}) }}"
+                                        class="bg-green-500 font-bold py-2 px-4 rounded transition-all hover:bg-green-300">
+                                    show
+                                </a>
+                                <a
+                                        href="{{ path('app_roles_edit', {'id': role.id}) }}"
+                                        class="bg-red-500 font-bold py-2 px-4 rounded transition-all hover:bg-red-300">
+                                    edit
+                                </a>
+                               
+                          </td>
+                          {# <td>$320,800</td> #}
+                        </tr>
+                       {% else %}
+                        <tr>
+                            <td colspan="5">no records found</td>
+                        </tr>
+                      </tbody>
+                      {% endfor %}
+                      <tfoot>
+                        {# <tr>
+                          <th>Name</th>
+                          <th>Position</th>
+                          <th>Office</th>
+                          <th>Age</th>
+                          <th>Start date</th>
+                          <th>Salary</th>
+                        </tr> #}
+                      </tfoot>
+                    </table>
+                  </div>
                 </div>
-           
+              </div>
             </div>
           </div>
           <!-- ============================================================== -->
@@ -607,7 +652,8 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer text-center">
-         
+          All Rights Reserved by Matrix-admin. Designed and Developed by
+          <a href="https://www.wrappixel.com">WrapPixel</a>.
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->
@@ -636,37 +682,14 @@
     <!--Custom JavaScript -->
     <script src="../dist/js/custom.min.js"></script>
     <!-- this page js -->
-    <script src="../asset/libs/jquery-steps/build/jquery.steps.min.js"></script>
-    <script src="../asset/libs/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="../asset/extra-libs/multicheck/datatable-checkbox-init.js"></script>
+    <script src="../asset/extra-libs/multicheck/jquery.multicheck.js"></script>
+    <script src="../asset/extra-libs/DataTables/datatables.min.js"></script>
     <script>
-      // Basic Example with form
-      var form = $("#example-form");
-      form.validate({
-        errorPlacement: function errorPlacement(error, element) {
-          element.before(error);
-        },
-        rules: {
-          confirm: {
-            equalTo: "#password",
-          },
-        },
-      });
-      form.children("div").steps({
-        headerTag: "h3",
-        bodyTag: "section",
-        transitionEffect: "slideLeft",
-        onStepChanging: function (event, currentIndex, newIndex) {
-          form.validate().settings.ignore = ":disabled,:hidden";
-          return form.valid();
-        },
-        onFinishing: function (event, currentIndex) {
-          form.validate().settings.ignore = ":disabled";
-          return form.valid();
-        },
-        onFinished: function (event, currentIndex) {
-          alert("Submitted!");
-        },
-      });
+      /****************************************
+       *       Basic Table                   *
+       ****************************************/
+      $("#zero_config").DataTable();
     </script>
   </body>
 </html>

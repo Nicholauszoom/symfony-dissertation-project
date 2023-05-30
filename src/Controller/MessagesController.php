@@ -7,6 +7,7 @@ use App\Entity\Messages;
 use App\Form\MessagesType;
 use App\Repository\MessagesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,6 +25,28 @@ class MessagesController extends AbstractController
 
 
 
+    // #[Route('/new', name: 'app_messages_new', methods: ['GET', 'POST'])]
+    // public function new(Request $request, MessagesRepository $messagesRepository): Response
+    // {
+    //     $message = new Messages();
+    //     $form = $this->createForm(MessagesType::class, $message);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $messagesRepository->save($message, true);
+
+    //         return $this->redirectToRoute('app_messages_index', [], Response::HTTP_SEE_OTHER);
+    //     }
+        
+
+    //     return $this->renderForm('messages/new.html.twig', [
+    //         'message' => $message,
+    //         'messages' => $messagesRepository->findAll(),
+    //         'form' => $form,
+    //     ]);
+    // }
+
+//current modification
     #[Route('/new', name: 'app_messages_new', methods: ['GET', 'POST'])]
     public function new(Request $request, MessagesRepository $messagesRepository): Response
     {
@@ -32,6 +55,21 @@ class MessagesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+ 
+            $message =$form -> getData();
+            $imagePath =$form->get('imagePath')->getData();
+            if($imagePath){
+                $newFileName =uniqid() . '.' . $imagePath->guessExtension();
+
+                try{
+                    $imagePath->move(
+                        $this -> getParameter('kernel.project_dir') . '/public/uploads', $newFileName);
+                }catch(FileException $e){
+                    return new Response($e->getMessage());
+                }
+                $message->setImagePath('/uploads/' . $newFileName);
+            }
+
             $messagesRepository->save($message, true);
 
             return $this->redirectToRoute('app_messages_index', [], Response::HTTP_SEE_OTHER);

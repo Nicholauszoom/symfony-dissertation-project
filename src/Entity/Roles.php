@@ -19,16 +19,18 @@ class Roles
     #[ORM\Column(length: 255)]
     #[Assert\NotBlank]
     private ?string $name = null;
+    #[ORM\Column]
+    private ?bool $status = null;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'roles')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Assert\NotBlank]
-    private ?self $roles = null;
+    // #[Assert\NotBlank]
+    // private ?self $roles = null;
 
-    public function __construct()
-    {
-        $this->roles = new ArrayCollection();
-    }
+    // public function __construct()
+    // {
+    //     $this->roles = new ArrayCollection();
+    // }
 
     public function getId(): ?int
     {
@@ -47,14 +49,25 @@ class Roles
         return $this;
     }
 
-    public function getRoles(): ?self
+    // public function getRoles(): ?self
+    // {
+    //     return $this->roles;
+    // }
+
+    // public function setRoles(?self $roles): self
+    // {
+    //     $this->roles = $roles;
+
+    //     return $this;
+    // }
+    public function isStatus(): ?bool
     {
-        return $this->roles;
+        return $this->status;
     }
 
-    public function setRoles(?self $roles): self
+    public function setStatus(bool $status): self
     {
-        $this->roles = $roles;
+        $this->status = $status;
 
         return $this;
     }

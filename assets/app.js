@@ -13,3 +13,5 @@ import './javascript/method1.js';
 
 // start the Stimulus application
 import './bootstrap';
+
+
