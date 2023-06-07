@@ -4,8 +4,11 @@ namespace App\Controller;
 
 
 use App\Entity\Messages;
+use App\Entity\User;
 use App\Form\MessagesType;
 use App\Repository\MessagesRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security as ConfigurationSecurity;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,10 +18,26 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/messages')]
 class MessagesController extends AbstractController
 {
+// private $security;
+    
     #[Route('/', name: 'app_messages_index', methods: ['GET'])]
-    public function index(MessagesRepository $messagesRepository): Response
+    public function index(MessagesRepository $messagesRepository ): Response
     {
-        return $this->render('messages/index.html.twig' ,[
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
+        // $user = $this->security->getUser();
+        // $userId = $user ? $user->getId() :null;
+
+        // if ($userId) {
+        //     $message = $messagesRepository->findAllByUserId($userId);
+        // } else {
+        //     $message = [];
+        // }
+       
+       
+        
+        return $this->render('messages/index.html.twig', [
             'messages' => $messagesRepository->findAll(),
         ]);
     }
@@ -50,6 +69,12 @@ class MessagesController extends AbstractController
     #[Route('/new', name: 'app_messages_new', methods: ['GET', 'POST'])]
     public function new(Request $request, MessagesRepository $messagesRepository): Response
     {
+
+      
+        $this->denyAccessUnlessGranted('ROLE_USER');
+
+
+
         $message = new Messages();
         $form = $this->createForm(MessagesType::class, $message);
         $form->handleRequest($request);
@@ -75,8 +100,10 @@ class MessagesController extends AbstractController
             return $this->redirectToRoute('app_messages_index', [], Response::HTTP_SEE_OTHER);
         }
         
+            // $messages = $messagesRepository->findAllByUserId($userId);
 
         return $this->renderForm('messages/new.html.twig', [
+             
             'message' => $message,
             'messages' => $messagesRepository->findAll(),
             'form' => $form,
@@ -86,6 +113,8 @@ class MessagesController extends AbstractController
     #[Route('/{id}', name: 'app_messages_show', methods: ['GET'])]
     public function show(Messages $message): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         return $this->render('messages/show.html.twig', [
             'message' => $message,
         ]);
@@ -117,5 +146,38 @@ class MessagesController extends AbstractController
         }
 
         return $this->redirectToRoute('app_messages_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
+
+// //////////////////
+// #[Route('/', name: 'app_messages_index', methods: ['GET'])]
+// public function index(MessagesRepository $messagesRepository): Response
+// {
+//     return $this->render('messages/index.html.twig' ,[
+//         'messages' => $messagesRepository->findAll(),
+//     ]);
+// }
+
+
+
+#[Route('/accountmessage', name: 'app_messages_By_user_Id',  methods: ['GET'])]
+public function getMssgByUserId(MessagesRepository $messagesRepository,Security $security): Response
+    {
+        $user = $security->getUser();
+        $userId = $user ? $user->getId(): null;
+
+        if ($userId) {
+            $messages = $messagesRepository->findAllByUserId($userId);
+        } else {
+            $messages = [];
+        }
+
+       
+
+        return $this->renderForm('messages/by_account.html.twig', [
+            'messages' =>  $messages,
+            
+        ]);
     }
 }

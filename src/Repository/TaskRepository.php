@@ -63,4 +63,17 @@ class TaskRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+
+
+// public function findAllByTechnicianId($technId)
+//     {
+//         return $this->createQueryBuilder('t')
+//             ->andWhere('t.techn = :technId')
+//             ->setParameter('technId', $technId)
+//             ->orderBy('t.startAt', 'DESC')
+//             ->getQuery()
+//             ->getResult();
+//     }
 }

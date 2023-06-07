@@ -30,6 +30,9 @@ class UsersController extends AbstractController
     #[Route('/users',methods:['GET'], name: 'app_users')]
     public function index(): Response
     {
+
+      $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $user=$this->userRepository->findAll();
 
         return $this->render('users/index.html.twig', [
@@ -51,6 +54,8 @@ class UsersController extends AbstractController
        #[Route('/users/edit/{id}', name: 'edit_user')]
     public function edit($id, Request $request): Response
     {
+      $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
 
       $user = $this->userRepository->find($id);
       $form = $this->createForm(RegistrationFormType::class,$user);

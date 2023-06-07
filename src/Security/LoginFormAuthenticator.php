@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Entity\Technician;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,10 +20,13 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 {
     use TargetPathTrait;
 
+    // private $technician;
+
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    public function __construct(private UrlGeneratorInterface $urlGenerator )
     {
+        
     }
 
     public function authenticate(Request $request): Passport
@@ -42,14 +46,31 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        // 1.Try to redirect the user to their original intended paths
+
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
+       
+       
+        //2.If admmin redirect to... admin dashboard
+        if($token->getUser()->isAdmin()){
+        
+            return new RedirectResponse($this->urlGenerator->generate('a_dashb'));
 
-        // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-       // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
-       return new RedirectResponse($this->urlGenerator->generate('a_dashb'));
+        }
+
+        // 3.If tehnician redirect to ...technician dashboard
+        if($token->getUser()->isTechnician()){
+        
+            return new RedirectResponse($this->urlGenerator->generate('t_dashb'));
+
+        }
+
+
+        // 4.IF NOT redirect a user to , user dashboard
+               
+       return new RedirectResponse($this->urlGenerator->generate('u_dashb'));
     }
 
     protected function getLoginUrl(Request $request): string

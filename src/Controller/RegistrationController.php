@@ -20,6 +20,8 @@ class RegistrationController extends AbstractController
     #[Route('/register', name: 'app_register')]
     public function register( MailerInterface $mailer, Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -58,10 +60,16 @@ class RegistrationController extends AbstractController
             // do anything else you need here, like send an email
 
             $email = (new Email())
-            ->from('rom@example.com')
+            ->from('ardhihelpdesk@example.com')
             ->to($user->getEmail())
-            ->subject('welcome to the space bar!')
-            ->text('Nice to meet you{$user->getName()}!');
+            ->subject('Alredy you have an account in Helpdesk Support System!')
+            ->text('Dr {$user->getName()}! you alredy have an account in 
+                    Ardhi University Help Desk Support System .
+                    You can now report to us damaged assets in side Ardhi University campus
+                    via. our website "http://localhost:8000/" use:passward :____ and username :___.
+
+                    for more info and  procudure how to use this website click: http://localhost:8000/about
+            ');
 
         $mailer ->send($email);    
 

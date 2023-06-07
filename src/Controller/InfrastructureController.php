@@ -16,6 +16,9 @@ class InfrastructureController extends AbstractController
     #[Route('/', name: 'app_infrastructure_index', methods: ['GET'])]
     public function index(InfrastructureRepository $infrastructureRepository): Response
     {
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         return $this->render('infrastructure/index.html.twig', [
             'infrastructures' => $infrastructureRepository->findAll(),
         ]);
@@ -24,6 +27,8 @@ class InfrastructureController extends AbstractController
     #[Route('/new', name: 'app_infrastructure_new', methods: ['GET', 'POST'])]
     public function new(Request $request, InfrastructureRepository $infrastructureRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $infrastructure = new Infrastructure();
         $form = $this->createForm(InfrastructureType::class, $infrastructure);
         $form->handleRequest($request);
@@ -60,6 +65,8 @@ class InfrastructureController extends AbstractController
     #[Route('/{id}', name: 'app_infrastructure_show', methods: ['GET'])]
     public function show(Infrastructure $infrastructure): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         return $this->render('infrastructure/show.html.twig', [
             'infrastructure' => $infrastructure,
         ]);
@@ -68,6 +75,8 @@ class InfrastructureController extends AbstractController
     #[Route('/{id}/edit', name: 'app_infrastructure_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Infrastructure $infrastructure, InfrastructureRepository $infrastructureRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $form = $this->createForm(InfrastructureType::class, $infrastructure);
         $form->handleRequest($request);
 

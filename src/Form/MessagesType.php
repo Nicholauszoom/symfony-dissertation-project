@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use App\Entity\Building;
 use App\Entity\Classroom;
 use App\Entity\Infrastructure;
@@ -14,11 +15,18 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Security\Core\Security;
 
 class MessagesType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    
+    public function __construct(
+        private Security $security,
+    ){
+    }
+    public function buildForm( FormBuilderInterface $builder, array $options): void
     {
+        
         $builder
 //            ->add('title')
 //            ->add('description')
@@ -123,6 +131,25 @@ class MessagesType extends AbstractType
                 // this is actually the default format for single_text
                 'format' => 'yyyy-MM-dd',
     
+            ])
+
+
+            ->add('user', EntityType::class, [
+
+                // looks for choices from this entity
+                'class' => User::class,
+                // 'value' => '{{app.user.email}}',
+                // uses the User.username property as the visible option string
+                // 'choice_label' => 'name',
+                'choice_label' => function ($user) {
+                    
+                    // return $user->getUser();
+
+                   return $user = $this->security->getUser();
+                
+                }
+               
+
             ])
     //
         ;

@@ -177,7 +177,7 @@
       content="Matrix Admin Lite Free Version is powerful and clean admin dashboard template, inpired from Bootstrap Framework"
     />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Matrix Admin Lite Free Versions Template by WrapPixel</title>
+    <title></title>
     <!-- Favicon icon -->
     <link
       rel="icon"
@@ -198,18 +198,14 @@
   </head>
 
   <body>
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
+  
     <div class="preloader">
       <div class="lds-ripple">
         <div class="lds-pos"></div>
         <div class="lds-pos"></div>
       </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
+  
     <div
       id="main-wrapper"
       data-layout="vertical"
@@ -219,14 +215,10 @@
       data-header-position="absolute"
       data-boxed-layout="full"
     >
-      <!-- ============================================================== -->
-      <!-- Topbar header - style you can find in pages.scss -->
-      <!-- ============================================================== -->
+
     	<header class="topbar" data-navbarbg="skin5"> <nav class="navbar top-navbar navbar-expand-md navbar-dark">
 					<div class="navbar-header" data-logobg="skin5">
-						<!-- ============================================================== -->
-						<!-- Logo -->
-						<!-- ============================================================== -->
+					
 							<a
 							class="navbar-brand" href="index.html"> <!-- Logo icon -->
 							<b class="chat-img">
@@ -244,50 +236,26 @@
 							</b>
 
 
-							{# <div class="chat-img">
-							                          <img src="../asset/images/users/1.jpg" alt="user" /> 
-							                        </div>
-							                        <div class="chat-content">
-							                          <h6 class="font-medium">{{ app.user.firstName }}</h6> #}
-
-							<!--End Logo icon -->
-							<!-- Logo text -->
+												<!-- Logo text -->
 								<span
 								class="logo-text ms-2"> <!-- dark Logo text -->
 								<img src="../asset/images/" alt="" class="light-logo"/>
 							</span>
-							<!-- Logo icon -->
-						<!-- <b class="logo-icon"> -->
-							<!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
-							<!-- Dark Logo icon -->
-							<!-- <img src="../assets/images/logo-text.png" alt="homepage" class="light-logo" /> -->
-
-							<!-- </b> -->
-							<!--End Logo icon -->
+						
 						</a>
-						<!-- ============================================================== -->
-						<!-- End Logo -->
-						<!-- ============================================================== -->
-						<!-- ============================================================== -->
-						<!-- Toggle which is visible on mobile only -->
-						<!-- ============================================================== -->
+						
 							<a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)"> <i class="ti-menu ti-close"></i>
 						</a>
 					</div>
-					<!-- ============================================================== -->
-					<!-- End Logo -->
-					<!-- ============================================================== -->
+				
 						<div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5"> <!-- ============================================================== -->
-						<!-- toggle and nav items -->
-						<!-- ============================================================== -->
+						
 							<ul class="navbar-nav float-start me-auto"> <li class="nav-item d-none d-lg-block">
 								<a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar">
 									<i class="mdi mdi-menu font-24"></i>
 								</a>
 							</li>
-							<!-- ============================================================== -->
-							<!-- create new -->
-							<!-- ============================================================== -->
+						
 								<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<span class="d-none d-md-block">Create New
 										<i class="fa fa-angle-down"></i>
@@ -297,22 +265,19 @@
 									</span>
 								</a>
 								<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-									<li>
+									{# <li>
 										<a class="dropdown-item" href="#">Action</a>
-									</li>
+									</li> #}
 									<li>
-										<a class="dropdown-item" href="#">Another action</a>
+										<a class="dropdown-item" href="/technician/new/">Create technician</a>
 									</li>
 									<li><hr class="dropdown-divider"/></li>
-									<li>
+									{# <li>
 										<a class="dropdown-item" href="#">Something else here</a>
-									</li>
+									</li> #}
 								</ul>
 							</li>
-							<!-- ============================================================== -->
-							<!-- Search -->
-							<!-- ============================================================== -->
-								<li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
+							<li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
 									<i class="mdi mdi-magnify fs-4"></i>
 								</a>
 								<form class="app-search position-absolute">
@@ -323,12 +288,8 @@
 								</form>
 							</li>
 						</ul>
-						<!-- ============================================================== -->
-						<!-- Right side toggle and nav items -->
-						<!-- ============================================================== -->
-							<ul class="navbar-nav float-end"> <!-- ============================================================== -->
-							<!-- Comment -->
-							<!-- ============================================================== -->
+						
+							<ul class="navbar-nav float-end"> 
 								<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<i class="mdi mdi-bell font-24"></i>
 								</a>
@@ -345,12 +306,7 @@
 									</li>
 								</ul>
 							</li>
-							<!-- ============================================================== -->
-							<!-- End Comment -->
-							<!-- ============================================================== -->
-							<!-- ============================================================== -->
-							<!-- Messages -->
-							<!-- ============================================================== -->
+						
 								<li class="nav-item dropdown"> <a class="nav-link dropdown-toggle waves-effect waves-dark" href="#" id="2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<i class="font-24 mdi mdi-comment-processing"></i>
 								</a>
@@ -437,13 +393,7 @@
 									</ul>
 								</ul>
 							</li>
-							<!-- ============================================================== -->
-							<!-- End Messages -->
-							<!-- ============================================================== -->
-
-							<!-- ============================================================== -->
-							<!-- User profile and search -->
-							<!-- ============================================================== -->
+							
 								<li class="nav-item dropdown"> <a class="
 									                    nav-link
 									                    dropdown-toggle
@@ -478,19 +428,12 @@
 									</div>
 								</ul>
 							</li>
-							<!-- ============================================================== -->
-						<!-- User profile and search -->
-							<!-- ============================================================== -->
+						
 						</ul>
 					</div>
 				</nav>
 			</header>
-      <!-- ============================================================== -->
-      <!-- End Topbar header -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
-      <!-- Left Sidebar - style you can find in sidebar.scss  -->
-      <!-- ============================================================== -->
+     
       <aside class="left-sidebar" data-sidebarbg="skin5">
         <!-- Sidebar scroll-->
         <div class="scroll-sidebar">
@@ -533,15 +476,7 @@
                   ><span class="hide-menu">Asset</span></a
                 >
               </li>
-              {# <li class="sidebar-item">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="grid.html"
-                  aria-expanded="false"
-                  ><i class="mdi mdi-blur-linear"></i
-                  ><span class="hide-menu">Full Width</span></a
-                >
-              </li> #}
+             
               <li class="sidebar-item">
                 <a
                   class="sidebar-link has-arrow waves-effect waves-dark"
@@ -562,30 +497,20 @@
                   <li class="sidebar-item">
                     <a href="/office/" class="sidebar-link"
                       >
-                      {# <i class="mdi mdi-note-outline"></i
-                      > #}
+                     
                       <span class="hide-menu"> Office</span></a
                     >
                   </li>
                   <li class="sidebar-item">
                     <a href="/classroom/" class="sidebar-link"
                       >
-                      {# <i class="mdi mdi-note-plus"></i
-                      > #}
+                      
                       <span class="hide-menu"> Classroom</span></a
                     >
                   </li>
                 </ul>
               </li>
-              {# <li class="sidebar-item">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="pages-buttons.html"
-                  aria-expanded="false"
-                  ><i class="mdi mdi-relative-scale"></i
-                  ><span class="hide-menu">Buttons</span></a
-                >
-              </li> #}
+            
               <li class="sidebar-item">
                 <a
                   class="sidebar-link has-arrow waves-effect waves-dark"
@@ -616,46 +541,23 @@
                    <li class="sidebar-item">
                     <a href="/users" class="sidebar-link"
                       >
-                      {# <
-                      i class="mdi mdi-account-location"></
-                      > #}
+                     
                       <span class="hide-menu"> Student</span></a
                     >
                   </li>
                 </ul>
               </li>
             
-              {# <li class="sidebar-item p-3">
-                <a
-                  href="https://github.com/wrappixel/matrix-admin-bt5"
-                  target="_blank"
-                  class="
-                    w-100
-                    btn btn-cyan
-                    d-flex
-                    align-items-center
-                    text-white
-                  "
-                  ><i class="mdi mdi-cloud-download font-20 me-2"></i>Download
-                  Free</a
-                >
-              </li> #}
+              
             </ul>
           </nav>
           <!-- End Sidebar navigation -->
         </div>
         <!-- End Sidebar scroll-->
       </aside>
-      <!-- ============================================================== -->
-      <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-      <!-- ============================================================== -->
-      <!-- ============================================================== -->
-      <!-- Page wrapper  -->
-      <!-- ============================================================== -->
+     
       <div class="page-wrapper">
-        <!-- ============================================================== -->
-        <!-- Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
+       
         <div class="page-breadcrumb">
           <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
@@ -673,16 +575,9 @@
             </div>
           </div>
         </div>
-        <!-- ============================================================== -->
-        <!-- End Bread crumb and right sidebar toggle -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Container fluid  -->
-        <!-- ============================================================== -->
+        
         <div class="container-fluid">
-          <!-- ============================================================== -->
-          <!-- Start Page Content -->
-          <!-- ============================================================== -->
+      
           <div class="row">
             <div class="col-12">
              
@@ -738,41 +633,18 @@
               </div>
             </div>
           </div>
-          <!-- ============================================================== -->
-          <!-- End PAge Content -->
-          <!-- ============================================================== -->
-          <!-- ============================================================== -->
-          <!-- Right sidebar -->
-          <!-- ============================================================== -->
-          <!-- .right-sidebar -->
-          <!-- ============================================================== -->
-          <!-- End Right sidebar -->
-          <!-- ============================================================== -->
-        </div>
-        <!-- ============================================================== -->
-        <!-- End Container fluid  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
+                </div>
+       
         <footer class="footer text-center">
-          All Rights Reserved by Matrix-admin. Designed and Developed by
-          <a href="https://www.wrappixel.com">WrapPixel</a>.
+          All Rights Reserved by Ardhi University. Designed and Developed by
+          <a href="">Ardhi university student</a>.
         </footer>
-        <!-- ============================================================== -->
-        <!-- End footer -->
-        <!-- ============================================================== -->
+        
       </div>
-      <!-- ============================================================== -->
-      <!-- End Page wrapper  -->
-      <!-- ============================================================== -->
+   
     </div>
-    <!-- ============================================================== -->
-    <!-- End Wrapper -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
+  
+    
     <script src="../asset/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../asset/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

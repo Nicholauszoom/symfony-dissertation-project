@@ -4,10 +4,18 @@ namespace App\Entity;
 
 use App\Repository\TechnicianRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+
 
 #[ORM\Entity(repositoryClass: TechnicianRepository::class)]
-class Technician
+
+
+class Technician 
 {
+// const ROLE_TECHNICIAN = 'ROLE_TECHNICIAN';
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -21,6 +29,17 @@ class Technician
 
     #[ORM\Column(length: 255)]
     private ?string $email = null;
+
+    
+    // #[ORM\Column]
+    // private array $roles = [];
+
+    //  /**
+    //  * @var string The hashed password
+    //  */
+    // #[ORM\Column]
+    // private ?string $password = null;
+
 
     #[ORM\Column(length: 255)]
     private ?string $profession = null;
@@ -72,6 +91,47 @@ class Technician
         return $this;
     }
 
+
+
+    // public function getRoles(): array
+    // {
+    //     $roles = $this->roles;
+    //     // guarantee every user at least has ROLE_USER
+    //     $roles[] = 'ROLE_TECNICIAN';
+
+    //     return array_unique($roles);
+    // }
+
+    // public function setRoles(array $roles): self
+    // {
+    //     $this->roles = $roles;
+
+    //     return $this;
+//     }
+//  /**
+//      * @see PasswordAuthenticatedUserInterface
+//      */
+//     public function getPassword(): string
+//     {
+//         return $this->password;
+//     }
+
+//     public function setPassword(string $password): self
+//     {
+//         $this->password = $password;
+
+//         return $this;
+//     }
+
+    /**
+     * @see UserInterface
+     */
+    // public function eraseCredentials()
+    // {
+    //     // If you store any temporary, sensitive data on the user, clear it here
+    //     // $this->plainPassword = null;
+    // }
+
     public function getProfession(): ?string
     {
         return $this->profession;
@@ -95,6 +155,15 @@ class Technician
 
     //     return $this;
     // }
+    // public function isTechnician():bool
+    // {
+    //    return in_array(self::ROLE_TECHNICIAN,$this->getRoles());
+    // }
+    // public function __toString() {
+    //     return $this->email;
+    // }
+
+
     public function __toString() {
         return $this->email;
     }

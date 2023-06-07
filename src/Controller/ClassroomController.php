@@ -16,6 +16,7 @@ class ClassroomController extends AbstractController
     #[Route('/', name: 'app_classroom_index', methods: ['GET'])]
     public function index(ClassroomRepository $classroomRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
         return $this->render('classroom/index.html.twig', [
             'classrooms' => $classroomRepository->findAll(),
         ]);
@@ -24,6 +25,8 @@ class ClassroomController extends AbstractController
     #[Route('/new', name: 'app_classroom_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ClassroomRepository $classroomRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        
         $classroom = new Classroom();
         $form = $this->createForm(ClassroomType::class, $classroom);
         $form->handleRequest($request);

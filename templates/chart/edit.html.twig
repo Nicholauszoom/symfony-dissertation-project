@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Chart{% endblock %}
+
+{% block body %}
+    <h1>Edit Chart</h1>
+
+    {{ include('chart/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_chart_index') }}">back to list</a>
+
+    {{ include('chart/_delete_form.html.twig') }}
+{% endblock %}

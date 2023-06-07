@@ -1,4 +1,4 @@
-{{ form_start(form) }}
+{# {{ form_start(form) }}
     {{ form_widget(form) }}
   
      <div class="border-top">
@@ -8,4 +8,13 @@
                       </button>
                     </div>
                   </div>
-{{ form_end(form) }}
+{{ form_end(form) }} #}
+
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button >
+
+        {{ button_label|default('submit') }}
+       
+    </button>
+{{ form_end(form) }} 

@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use App\Entity\Messages;
+use App\Entity\Chart;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,11 +12,20 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Security\Core\Security;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+//const
+const ROLE_ADMIN ='ROLE_ADMIN';
+
+const ROLE_TECHNICIAN ='ROLE_TECHNICIAN';
+
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -48,9 +59,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $registrationNo = null;
 
+    #[ORM\OneToMany(mappedBy: 'no', targetEntity: Participant::class)]
+    private Collection $participant;
+
+    // #[ORM\OneToMany(mappedBy: 'user', targetEntity: Chart::class)]
+    // private Collection $messages;
+
     public function __construct()
     {
+        
         $this->buildings = new ArrayCollection();
+        // $this->messages = new ArrayCollection();
+        $this->participant = new ArrayCollection();
     }
 
     #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
@@ -130,12 +150,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getFirstName(): ?string
     {
         return $this->firstName;
+        
     }
 
     public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
-
+        
         return $this;
     }
 
@@ -205,8 +226,80 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+
+    public function isAdmin():bool
+    {
+       return in_array(self::ROLE_ADMIN,$this->getRoles());
+    }
+
+
+    public function isTechnician():bool
+    {
+       return in_array(self::ROLE_TECHNICIAN,$this->getRoles());
+    }
+
    
     public function __toString() {
         return $this->firstName;
     }
+
+    // /**
+    //  * @return Collection<int, Chart>
+    //  */
+    // public function getMessages(): Collection
+    // {
+    //     return $this->messages;
+    // }
+
+    // public function addMessage(Chart $message): self
+    // {
+    //     if (!$this->messages->contains($message)) {
+    //         $this->messages->add($message);
+    //         $message->setUser($this);
+    //     }
+
+    //     return $this;
+    // }
+
+    // public function removeMessage(Chart $message): self
+    // {
+    //     if ($this->messages->removeElement($message)) {
+    //         // set the owning side to null (unless already changed)
+    //         if ($message->getUser() === $this) {
+    //             $message->setUser(null);
+    //         }
+    //     }
+
+    //     return $this;
+    // }
+
+    /**
+     * @return Collection<int, Participant>
+     */
+    public function getParticipant(): Collection
+    {
+        return $this->participant;
+    }
+
+    public function addParticipant(Participant $participant): self
+    {
+        if (!$this->participant->contains($participant)) {
+            $this->participant->add($participant);
+            // $participant->setNo($this);
+        }
+
+        return $this;
+    }
+
+    // public function removeParticipant(Participant $participant): self
+    // {
+    //     if ($this->participant->removeElement($participant)) {
+    //         // set the owning side to null (unless already changed)
+    //         // if ($participant->getNo() === $this) {
+    //             // $participant->setNo(null);
+    //         }
+    //     }
+
+    //     return $this;
+    // }
 }

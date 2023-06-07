@@ -202,7 +202,7 @@
       <!-- ============================================================== -->
       <!-- Topbar header - style you can find in pages.scss -->
       <!-- ============================================================== -->
-      <header class="topbar" data-navbarbg="skin5">
+  	  <header class="topbar" data-navbarbg="skin5">
         <nav class="navbar top-navbar navbar-expand-md navbar-dark">
           <div class="navbar-header" data-logobg="skin5">
             <!-- ============================================================== -->
@@ -271,33 +271,8 @@
                   ><i class="mdi mdi-menu font-24"></i
                 ></a>
               </li>
-              <!-- ============================================================== -->
-              <!-- create new -->
-              <!-- ============================================================== -->
-              <li class="nav-item dropdown">
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  <span class="d-none d-md-block"
-                    >Create New <i class="fa fa-angle-down"></i
-                  ></span>
-                  <span class="d-block d-md-none"
-                    ><i class="fa fa-plus"></i
-                  ></span>
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="#"></a></li>
-                  <li><a class="dropdown-item" href="{{ path('app_messages_new') }}">Another message</a></li>
-                  <li>
-                    {# <a class="dropdown-item" href="#">Something else here</a> #}
-                  </li>
-                </ul>
-              </li>
+            
+                      
               <!-- ============================================================== -->
               <!-- Search -->
               <!-- ============================================================== -->
@@ -526,6 +501,8 @@
           </div>
         </nav>
       </header>
+
+    
       <!-- ============================================================== -->
       <!-- End Topbar header -->
       <!-- ============================================================== -->
@@ -543,7 +520,7 @@
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/Dashboard"
                   aria-expanded="false"
-                  ><i class="mdi mdi-view-dashboard"></i
+                  ><i class="mdi mdi-dialpad"></i
                   ><span class="hide-menu">Dashboard</span></a
                 >
               </li>
@@ -552,7 +529,7 @@
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/messages/"
                   aria-expanded="false"
-                  ><i class="mdi mdi-chart-bar"></i
+                  ><i class="mdi mdi-comment-processing"></i
                   ><span class="hide-menu">Message</span></a
                 >
               </li>
@@ -561,7 +538,7 @@
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/task/"
                   aria-expanded="false"
-                  ><i class="mdi mdi-chart-bubble"></i
+                  ><i class="mdi mdi-playlist-check"></i
                   ><span class="hide-menu">Task</span></a
                 >
               </li>
@@ -570,7 +547,7 @@
                   class="sidebar-link waves-effect waves-dark sidebar-link"
                   href="/infrastructure/"
                   aria-expanded="false"
-                  ><i class="mdi mdi-border-inside"></i
+                  ><i class="mdi mdi-slack"></i
                   ><span class="hide-menu">Asset</span></a
                 >
               </li>
@@ -588,26 +565,32 @@
                   class="sidebar-link has-arrow waves-effect waves-dark"
                   href="javascript:void(0)"
                   aria-expanded="false"
-                  ><i class="mdi mdi-receipt"></i
+                  ><i class="mdi mdi-city"></i
                   ><span class="hide-menu">Building</span></a
                 >
                 <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
                     <a href="/building/" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> Building</span></a
+                      >
+                      {# <i class="mdi mdi-note-outline"></i
+                      > #}
+                      <span class="hide-menu"> Building</span></a
                     >
                   </li>
                   <li class="sidebar-item">
                     <a href="/office/" class="sidebar-link"
-                      ><i class="mdi mdi-note-outline"></i
-                      ><span class="hide-menu"> Office</span></a
+                      >
+                      {# <i class="mdi mdi-note-outline"></i
+                      > #}
+                      <span class="hide-menu"> Office</span></a
                     >
                   </li>
                   <li class="sidebar-item">
                     <a href="/classroom/" class="sidebar-link"
-                      ><i class="mdi mdi-note-plus"></i
-                      ><span class="hide-menu"> Classroom</span></a
+                      >
+                      {# <i class="mdi mdi-note-plus"></i
+                      > #}
+                      <span class="hide-menu"> Classroom</span></a
                     >
                   </li>
                 </ul>
@@ -626,139 +609,41 @@
                   class="sidebar-link has-arrow waves-effect waves-dark"
                   href="javascript:void(0)"
                   aria-expanded="false"
-                  ><i class="mdi mdi-face"></i
-                  ><span class="hide-menu">User</span></a
+                  >
+                  <i class="mdi mdi-account"></i
+                  >
+                  <span class="hide-menu">User</span></a
                 >
                 <ul aria-expanded="false" class="collapse first-level">
                   <li class="#">
-                    <a href="icon-material.html" class="sidebar-link"
-                      ><i class="mdi mdi-emoticon"></i
-                      ><span class="hide-menu"> Staff</span></a
+                    <a href="" class="sidebar-link"
+                      >
+                      {# <i class="mdi mdi-account-location"></i
+                      > #}
+                      <span class="hide-menu"> Staff</span></a
                     >
                   </li>
                   <li class="sidebar-item">
                     <a href="/technician/" class="sidebar-link"
-                      ><i class="mdi mdi-emoticon-cool"></i
-                      ><span class="hide-menu"> Technician</span></a
+                      >
+                      {# <i class="mdi mdi-account-location"></i
+                      > #}
+                      <span class="hide-menu"> Technician</span></a
                     >
                   </li>
                    <li class="sidebar-item">
                     <a href="/users" class="sidebar-link"
-                      ><i class="mdi mdi-emoticon-cool"></i
-                      ><span class="hide-menu"> Student</span></a
+                      >
+                      {# <
+                      i class="mdi mdi-account-location"></
+                      > #}
+                      <span class="hide-menu"> Student</span></a
                     >
                   </li>
                 </ul>
               </li>
-              {# <li class="sidebar-item">
-                <a
-                  class="sidebar-link waves-effect waves-dark sidebar-link"
-                  href="pages-elements.html"
-                  aria-expanded="false"
-                  ><i class="mdi mdi-pencil"></i
-                  ><span class="hide-menu">Elements</span></a
-                >
-              </li> #}
-              {# <li class="sidebar-item">
-                <a
-                  class="sidebar-link has-arrow waves-effect waves-dark"
-                  href="javascript:void(0)"
-                  aria-expanded="false"
-                  ><i class="mdi mdi-move-resize-variant"></i
-                  ><span class="hide-menu">Addons </span></a
-                >
-                <ul aria-expanded="false" class="collapse first-level">
-                  <li class="sidebar-item">
-                    <a href="index2.html" class="sidebar-link"
-                      ><i class="mdi mdi-view-dashboard"></i
-                      ><span class="hide-menu"> Dashboard-2 </span></a
-                    >
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="pages-gallery.html" class="sidebar-link"
-                      ><i class="mdi mdi-multiplication-box"></i
-                      ><span class="hide-menu"> Gallery </span></a
-                    >
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="pages-calendar.html" class="sidebar-link"
-                      ><i class="mdi mdi-calendar-check"></i
-                      ><span class="hide-menu"> Calendar </span></a
-                    >
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="pages-invoice.html" class="sidebar-link"
-                      ><i class="mdi mdi-bulletin-board"></i
-                      ><span class="hide-menu"> Invoice </span></a
-                    >
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="pages-chat.html" class="sidebar-link"
-                      ><i class="mdi mdi-message-outline"></i
-                      ><span class="hide-menu"> Chat Option </span></a
-                    >
-                  </li>
-                </ul>
-              </li> #}
-              {# <li class="sidebar-item">
-                <a
-                  class="sidebar-link has-arrow waves-effect waves-dark"
-                  href="javascript:void(0)"
-                  aria-expanded="false"
-                  ><i class="mdi mdi-account-key"></i
-                  ><span class="hide-menu">Authentication </span></a
-                >
-                <ul aria-expanded="false" class="collapse first-level">
-                  <li class="sidebar-item">
-                    <a href="authentication-login.html" class="sidebar-link"
-                      ><i class="mdi mdi-all-inclusive"></i
-                      ><span class="hide-menu"> Login </span></a
-                    >
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="authentication-register.html" class="sidebar-link"
-                      ><i class="mdi mdi-all-inclusive"></i
-                      ><span class="hide-menu"> Register </span></a
-                    >
-                  </li>
-                </ul>
-              </li>
-              <li class="sidebar-item">
-                <a
-                  class="sidebar-link has-arrow waves-effect waves-dark"
-                  href="javascript:void(0)"
-                  aria-expanded="false"
-                  ><i class="mdi mdi-alert"></i
-                  ><span class="hide-menu">Errors </span></a
-                >
-                <ul aria-expanded="false" class="collapse first-level">
-                  <li class="sidebar-item">
-                    <a href="error-403.html" class="sidebar-link"
-                      ><i class="mdi mdi-alert-octagon"></i
-                      ><span class="hide-menu"> Error 403 </span></a
-                    >
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="error-404.html" class="sidebar-link"
-                      ><i class="mdi mdi-alert-octagon"></i
-                      ><span class="hide-menu"> Error 404 </span></a
-                    >
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="error-405.html" class="sidebar-link"
-                      ><i class="mdi mdi-alert-octagon"></i
-                      ><span class="hide-menu"> Error 405 </span></a
-                    >
-                  </li>
-                  <li class="sidebar-item">
-                    <a href="error-500.html" class="sidebar-link"
-                      ><i class="mdi mdi-alert-octagon"></i
-                      ><span class="hide-menu"> Error 500 </span></a
-                    >
-                  </li>
-                </ul>
-              </li> #}
-              <li class="sidebar-item p-3">
+            
+              {# <li class="sidebar-item p-3">
                 <a
                   href="https://github.com/wrappixel/matrix-admin-bt5"
                   target="_blank"
@@ -772,7 +657,7 @@
                   ><i class="mdi mdi-cloud-download font-20 me-2"></i>Download
                   Free</a
                 >
-              </li>
+              </li> #}
             </ul>
           </nav>
           <!-- End Sidebar navigation -->
@@ -817,6 +702,7 @@
         <div class="VPGGthdu3cy_ZP7AL7dt TK9h2c2b79uBgR_cJzCE u0Aizb1ol0gBXDISYKJM">
             <div class="wBVMFkIGfrKshbvi2gS1 mngKhi_Rv06PF57lblDI">
                 <table class="TK9h2c2b79uBgR_cJzCE Zy1Pypi71Xu6guex6urN NIAblPiyeuYQ0zW671xb tE23eyc5jfeQpiPRybcw">
+                
                   {% for message in messages %}
                     <tbody class="_Ybd3WwuTVljUT4vEaM3 Zy1Pypi71Xu6guex6urN NIAblPiyeuYQ0zW671xb _1jTZ8KXRZul60S6czNi XpuPpk9eXhVCrleKmXDr">
                         
@@ -831,8 +717,8 @@
                                 </div>
                             </td>
                             <td class="YRrCJSr_j5nopfm4duUc Q_jg_EPdNf9eDMn1mLI2 _wYiJGbRZyFZeCc8y7Sf d4louhNic5PFgJGRKqn6 BHrWGjM1Iab_fAz0_91H">
-                                <img class="YIUegm7fh_CpJbivTu6B MnxxlQlR1H0xJuMEE8Yr RpVwy4sO7Asb86CncKJ_" src="https://img.icons8.com/?size=1x&id=108296&format=png" alt="Neil Sims">
-                                <div class="d3C8uAdJKNl1jzfE9ynq yM_AorRf2jSON3pDsdrz __9sbu0yrzdhGIkLWNXl OyABRrnTV_kvHV7dJ0uE">Student</div>
+                                <img class="YIUegm7fh_CpJbivTu6B MnxxlQlR1H0xJuMEE8Yr RpVwy4sO7Asb86CncKJ_" src="https://img.icons8.com/?size=1x&id=23264&format=png" alt="Neil Sims">
+                                <div class="d3C8uAdJKNl1jzfE9ynq yM_AorRf2jSON3pDsdrz __9sbu0yrzdhGIkLWNXl OyABRrnTV_kvHV7dJ0uE">{{message.user}}</div>
                             </td>
                             <td class="_wYiJGbRZyFZeCc8y7Sf d3C8uAdJKNl1jzfE9ynq yM_AorRf2jSON3pDsdrz __9sbu0yrzdhGIkLWNXl OyABRrnTV_kvHV7dJ0uE ZhzOGpbwY0R4TKKYr5pG SwT7Kd2nq4AegrA_rbqO EaxKPe33bBy_Ky6mzblq vfNYjqjYMlN1XskEucCt wBVMFkIGfrKshbvi2gS1">{{ message.description }}</td>
                             <td class="_wYiJGbRZyFZeCc8y7Sf BHrWGjM1Iab_fAz0_91H d3C8uAdJKNl1jzfE9ynq ezMFUVl744lvw6ht0lFe __9sbu0yrzdhGIkLWNXl OyABRrnTV_kvHV7dJ0uE">{{ message.time ? message.time|date('Y-m-d H:i:s') : '' }}</td>
@@ -841,6 +727,13 @@
                                         href="{{ path('app_messages_edit', {'id': message.id}) }}"
                                         class="bg-red-500 font-bold py-2 px-4 rounded transition-all hover:bg-red-300">
                                     edit
+                                </a>  #}
+                               {# <a href="{{ path('app_messages_edit', {'id': message.id}) }}">
+
+                                 <button type="button" data-modal-toggle="user-modal" class="_k0lTW0vvzboctTxDi2R Q_jg_EPdNf9eDMn1mLI2 _Cj_M6jt2eLjDgkBBNgI b9aD6g2qw84oyZNsMO8j c8dCx6gnV43hTOLV6ks5 ezMFUVl744lvw6ht0lFe ijrOHNoSVGATsWYKl4Id y6GKdvUrd7vp_pxsFb57 g40_g3BQzYCOX5eZADgY mveJTCIb2WII7J4sY22F YoPCmQ0E_V5W0GGmSIdm _dylIDxYTN3qgvD4U597 KmgKPWh7pHX4ztLneO0T d8_fVOcgDmbt7UdpfeLK WuKugQzwTT7o1wwBck2R _ZsTMX_gz275093orLWM">
+                                    <svg class="ADSeKHR1DvUUA48Chci_ rxe6apEJoEk8r75xaVNG fhCwost7CSNRc2WSHLFW" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path></svg>
+                                  Edit user
+                                </button>
                                 </a> #}
                                
                                {{ include('messages/_delete_form.html.twig') }}
@@ -1252,8 +1145,8 @@
         <!-- footer -->
         <!-- ============================================================== -->
         <footer class="footer text-center">
-          All Rights Reserved by Matrix-admin. Designed and Developed by
-          <a href="https://www.wrappixel.com">WrapPixel</a>.
+          All Rights Reserved by Ardhi UNiversity . Designed and Developed by
+          <a href="https://aru.co.tz">Ardhi university student</a>.
         </footer>
         <!-- ============================================================== -->
         <!-- End footer -->

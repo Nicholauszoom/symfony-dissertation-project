@@ -28,7 +28,7 @@ class RegistrationFormType extends AbstractType
             'label' => false,
             'attr' => [
                 'autocomplete' => 'firstName',                     
-                'class' => 'form-control border-0',
+                'class' => 'required form-control',
                 'placeholder' => 'First Name'
             ],
         ])
@@ -38,8 +38,8 @@ class RegistrationFormType extends AbstractType
             'label' => false,
             'attr' => [
                 'autocomplete' => 'lastName',                     
-                'class' => 'form-control border-0',
-                'placeholder' => 'Last Name'
+                'class' => 'required form-control',     
+               'placeholder' => 'Last Name'
             ],
         ])
 
@@ -47,7 +47,7 @@ class RegistrationFormType extends AbstractType
             'label' => false,
             'attr' => [
                 'autocomplete' => 'email',                     
-                'class' => 'form-control border-0',
+                'class' => 'required form-control',
                 'placeholder' => 'Email eg.ardhiuniversity@gmail.com'
             ],
         ])
@@ -56,7 +56,7 @@ class RegistrationFormType extends AbstractType
             'label' => false,
             'attr' => [
                 'autocomplete' => 'registrationNo',                     
-                'class' => 'form-control border-0',
+                'class' => 'required form-control',
                 'placeholder' => 'registrationNo eg.251.../T.20..'
             ],
         ])
@@ -80,7 +80,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',                     
-                    'class' => 'form-control border-0',
+                    'class' => 'required form-control',
                     'placeholder' => 'Password'
                 ],
                 'constraints' => [

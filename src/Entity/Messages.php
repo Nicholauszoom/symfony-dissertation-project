@@ -2,9 +2,11 @@
 
 namespace App\Entity;
 
+
 use App\Repository\MessagesRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bundle\SecurityBundle\Security;
 
 #[ORM\Entity(repositoryClass: MessagesRepository::class)]
 class Messages
@@ -37,6 +39,12 @@ class Messages
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $time = null;
+
+    #[ORM\ManyToOne(inversedBy: 'messages')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+  
 
     public function getId(): ?int
     {
@@ -129,5 +137,25 @@ class Messages
     public function __toString() {
         return $this->title;
     }
+
+    public function getUser(): ?User
+    {
+       
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+    // public function someMethod(User): void
+    // {
+    //     // returns User object or null if not authenticated
+    //     $user = $this->security->getUser();
+
+    //     // ...
+    // }
 
 }

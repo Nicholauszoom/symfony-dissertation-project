@@ -28,6 +28,9 @@ class BuildingController extends AbstractController
     #[Route('/building', methods:['GET'], name: 'buildings')]
     public function index(): Response
     {
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $building = $this->buildingRepository->findAll();
 
         return $this->render('building/index.html.twig', [
@@ -49,6 +52,7 @@ class BuildingController extends AbstractController
     #[Route('/CreateBuilding', name:'create_building')]
     public function create(Request $request): Response {
  
+      $this->denyAccessUnlessGranted('ROLE_ADMIN');
       $building = new Building();
       $form =$this->createForm(BuildingFormType::class, $building);
 

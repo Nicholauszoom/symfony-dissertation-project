@@ -16,6 +16,8 @@ class TechnicianController extends AbstractController
     #[Route('/', name: 'app_technician_index', methods: ['GET'])]
     public function index(TechnicianRepository $technicianRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         return $this->render('technician/index.html.twig', [
             'technicians' => $technicianRepository->findAll(),
         ]);
@@ -24,6 +26,8 @@ class TechnicianController extends AbstractController
     #[Route('/new', name: 'app_technician_new', methods: ['GET', 'POST'])]
     public function new(Request $request, TechnicianRepository $technicianRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+
         $technician = new Technician();
         $form = $this->createForm(TechnicianType::class, $technician);
         $form->handleRequest($request);
@@ -75,4 +79,25 @@ class TechnicianController extends AbstractController
 
         return $this->redirectToRoute('app_technician_index', [], Response::HTTP_SEE_OTHER);
     }
+
+
+
+
+    // public function getTaskByTechId(MessageRepository $messageRepository, Security $security): Response
+    // {
+    //     $user = $security->getUser();
+    //     $userId = $user ? $user->getId() : null;
+
+    //     if ($userId) {
+    //         $messages = $messageRepository->findAllByUserId($userId);
+    //     } else {
+    //         $messages = [];
+    //     }
+
+    //     return $this->render('default/index.html.twig', [
+    //         'messages' => $messages,
+    //     ]);
+    // }
+
+
 }

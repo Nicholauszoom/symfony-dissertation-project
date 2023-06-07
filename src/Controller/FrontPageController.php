@@ -40,6 +40,7 @@ class FrontPageController extends AbstractController
     #[Route('/CreateDetail', name:'create_detail')]
     public function create(Request $request): Response {
  
+      $this->denyAccessUnlessGranted('ROLE_ADMIN');
       $details = new Detail();
       $form =$this->createForm(FrontDetailFormType::class, $details);
 
