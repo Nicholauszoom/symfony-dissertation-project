@@ -71,7 +71,7 @@ class MessagesController extends AbstractController
     {
 
       
-        $this->denyAccessUnlessGranted('ROLE_USER');
+        // $this->denyAccessUnlessGranted('ROLE_USER');
 
 
 
@@ -81,6 +81,29 @@ class MessagesController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
  
+            // dump($request->request->get('location_latitude'));
+            // dump($request->request->get('location_longitude'));
+
+
+            //  if ($message->getLatitude() !== null) {
+            //     $message->setLatitude($request->request->get('latitude'));
+            // }
+
+            // if ($message->getLongitude() !== null) {
+            //     $message->setLongitude($request->request->get('longitude'));
+            // }
+
+
+
+           
+             // $message->setLatitude($request->request->get('location')['latitude']);
+            // $message->setLongitude($request->request->get('location')['longitude']);
+            // $message = array(
+            //     'latitude' => $request->request->get('location')['latitude'],
+            //     'longitude' => $request->request->get('location')['longitude']
+            // );
+
+
             $message =$form -> getData();
             $imagePath =$form->get('imagePath')->getData();
             if($imagePath){
@@ -97,23 +120,25 @@ class MessagesController extends AbstractController
 
             $messagesRepository->save($message, true);
 
-            return $this->redirectToRoute('app_messages_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_messages_new', [], Response::HTTP_SEE_OTHER);
         }
         
             // $messages = $messagesRepository->findAllByUserId($userId);
+
+            // return new Response('Location saved successfully.', Response::HTTP_OK);
 
         return $this->renderForm('messages/new.html.twig', [
              
             'message' => $message,
             'messages' => $messagesRepository->findAll(),
-            'form' => $form,
+            'form' => $form->createView(),
         ]);
     }
 
     #[Route('/{id}', name: 'app_messages_show', methods: ['GET'])]
     public function show(Messages $message): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+       
 
         return $this->render('messages/show.html.twig', [
             'message' => $message,

@@ -5,8 +5,12 @@ namespace App\Controller;
 use App\Entity\Task;
 use App\Form\TaskType;
 use App\Repository\TaskRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -17,13 +21,28 @@ use Symfony\Component\Routing\Annotation\Route;
 class TaskController extends AbstractController
 {
 
+
+    protected static $defaultName = 'app:check-status';
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        // parent::__construct();
+        $this->entityManager = $entityManager;
+    }
+
+
+
     #[Route('/', name: 'app_task_index', methods: ['GET'])]
     public function index(TaskRepository $taskRepository): Response
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
 
+
+
         return $this->render('task/index.html.twig', [
             'tasks' => $taskRepository->findAll(),
+           
         ]); 
     }
 
@@ -38,6 +57,10 @@ class TaskController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
            
+        
+
+
+
          $email = (new Email())
             ->from('nicholaussomi5@gmail.com')
             ->to($task->getTechn())
@@ -63,8 +86,15 @@ class TaskController extends AbstractController
     #[Route('/{id}', name: 'app_task_show', methods: ['GET'])]
     public function show(Task $task): Response
     {
+
+ // Check if the entity is expired
+ $endDate = $task->getEndAt();
+ $currentDate = new \DateTime();
+ $interval = $currentDate->diff($endDate);
+ $isExpired = $interval->invert === 1;
         return $this->render('task/show.html.twig', [
             'task' => $task,
+            'isExpired' => $isExpired,
         ]);
     }
 
@@ -96,39 +126,65 @@ class TaskController extends AbstractController
         return $this->redirectToRoute('app_task_index', [], Response::HTTP_SEE_OTHER);
     }
 
+// task edit status
 
+public function editTaskStatusAction(Request $request, $id)
+{
+    // Load the task from the database
+    $entityManager = $this->$this->getDoctrine()->getManager();
+    $task = $entityManager->getRepository(Task::class)->find($id);
 
+    // Create the form
+    $form = $this->createFormBuilder()
+        ->setAction($this->generateUrl('edit_task_status', ['id' => $id]))
+        ->setMethod('POST')
+        ->add('status', ChoiceType::class, [
+            'choices' => [
+                'New' => 'new',
+                'In progress' => 'in_progress',
+                'Completed' => 'completed',
+            ],
+            'expanded' => true,
+            'multiple' => false,
+        ])
+        ->add('submit', SubmitType::class, ['label' => 'Update Status'])
+        ->getForm();
 
+    // Handle form submission
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+        $data = $form->getData();
+        $task->setStatus($data['status']); // Set the new status
+        $entityManager->flush(); // Save changes to the database
+        return $this->redirectToRoute(''); // Redirect to a different page
+    }
 
-    // #[Route('/{id}/get', name: 'app_task_technician', methods: ['POST'])]
-    // public function  findAllByTechnicianId(TaskRepository $taskRepository,$technId ,Security $security):Response
-    // {
-    //    $technician=$security->getTech
+    // Render the form in your HTML template
+    return $this->render('task/show.html.twig', [
+        'form' => $form->createView(),
+    ]);
+}
+//end
 
+// protected function execute(InputInterface $input, OutputInterface $output)
+// {
+//     $repository = $this->entityManager->getRepository(Task::class);
+//     $records = $repository->findAll();
 
-    //     return $this->render('technician/technician_get_task.html.twig', [
-    //         'tasks_id' => $taskRepository->findAllByTechnicianId($technId),
-    //     ]); 
-    // }
+//     foreach ($records as $record) {
+//         $now = new \DateTime();
+//         if ($now >= $record->getEndAt()) {
+//             $record->setStatus('expired');
+//             $this->entityManager->persist($record);
+//         }
+//     }
 
+//     $this->entityManager->flush();
 
-////////////////
-    // public function getTaskByTechId(MessageRepository $messageRepository, Security $security): Response
-    // {
-    //     $user = $security->getUser();
-    //     $userId = $user ? $user->getId() : null;
+//     $output->writeln('Status update completed.');
 
-    //     if ($userId) {
-    //         $messages = $messageRepository->findAllByUserId($userId);
-    //     } else {
-    //         $messages = [];
-    //     }
-
-    //     return $this->render('default/index.html.twig', [
-    //         'messages' => $messages,
-    //     ]);
-    // }
-
+//     return Command::SUCCESS;
+// }
 
 
     

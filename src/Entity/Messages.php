@@ -45,6 +45,14 @@ class Messages
     private ?User $user = null;
 
   
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $latitude =null;
+
+ 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $longitude =null;
+
+  
 
     public function getId(): ?int
     {
@@ -157,5 +165,29 @@ class Messages
 
     //     // ...
     // }
+
+    public function getLatitude(): ?string
+    {
+        return $this->latitude;
+    }
+
+    public function setLatitude(string $latitude): self
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    public function getLongitude(): ?string
+    {
+        return $this->longitude;
+    }
+
+    public function setLongitude(string $longitude): self
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
 
 }

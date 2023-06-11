@@ -8,6 +8,7 @@ use App\Entity\Classroom;
 use App\Entity\Infrastructure;
 use App\Entity\Messages;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -62,6 +63,7 @@ class MessagesType extends AbstractType
                 ],
             ])
 
+         
             ->add('imagePath',FileType::class, array('data_class' => null), [
 
                     // 'label' => ['image upload',
@@ -151,6 +153,10 @@ class MessagesType extends AbstractType
                
 
             ])
+            ->add('longitude', TextType::class)
+            ->add('latitude', TextType::class)
+            
+
     //
         ;
     }

@@ -75,7 +75,7 @@ class InfrastructureController extends AbstractController
     #[Route('/{id}/edit', name: 'app_infrastructure_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Infrastructure $infrastructure, InfrastructureRepository $infrastructureRepository): Response
     {
-        $this->denyAccessUnlessGranted('ROLE_ADMIN');
+        $this->denyAccessUnlessGranted('ROLE_TECHNICIAN');
 
         $form = $this->createForm(InfrastructureType::class, $infrastructure);
         $form->handleRequest($request);

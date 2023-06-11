@@ -61,11 +61,16 @@
     <link href="../dist/css/style.min.css" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
 
-   
-  
+       {# <script src="../assets/js/location.js"></script> #}
+
+  <style>
+    .hide-menu {
+    color:black;
+    }
+    </style>
   </head>
 
-  <body>
+  <body >
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -315,7 +320,7 @@
       <!-- ============================================================== -->
       <!-- Left Sidebar - style you can find in sidebar.scss  -->
       <!-- ============================================================== -->
-     <aside class="left-sidebar" data-sidebarbg="skin5">
+     <aside class="left-sidebar" data-sidebarbg="">
         <!-- Sidebar scroll-->
         <div class="scroll-sidebar">
           <!-- Sidebar navigation-->
@@ -337,7 +342,7 @@
                   href="/messages/new/"
                   aria-expanded="false"
                   ><i class="mdi mdi-comment-processing"></i
-                  ><span class="hide-menu">Message</span></a
+                  ><span class="hide-menu active">Message</span></a
                 >
               </li>
            
@@ -502,6 +507,35 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
+
+  {# script to find a location of the sent request
+<script type="text/javascript"> 
+    function getLocation(){
+      {% if navigator.geolocation %}
+         navigator.geolocation.getCurrentPosition(showPosition);
+              {% endif %}
+    }
+    function showPosition(position){
+      document.querySelector('.form input[name="latitude"]').value = position.coords.latitude;
+    }
+</script> #}
+
+  {# end #}
+  {# {% block javascripts %}
+<script type="text/javascript"> 
+    function getLocation(){
+      {% if navigator.geolocation %}
+         navigator.geolocation.getCurrentPosition(showPosition);
+      {% endif %}
+    }
+    function showPosition(position){
+      document.querySelector('.form input[name="latitude"]').value = position.coords.latitude;
+    }
+</script> 
+{% endblock %} #}
+
+
+
     <script src="../asset/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="../asset/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

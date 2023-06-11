@@ -1,30 +1,69 @@
-<div class="YRrCJSr_j5nopfm4duUc XYChh_GyxXGwI9NMA1Ww R0X5VtiZIoV7IjvrxBJ_ dGKzfMAd6n2iS7Kmq6Ow">
+<div class="YRrCJSr_j5nopfm4duUc XYChh_GyxXGwI9NMA1Ww R0X5VtiZIoV7IjvrxBJ_ dGKzfMAd6n2iS7Kmq6Ow"  onload="getLocation();">
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+    {# {{ form_widget(form) }} #}
+
+     {{ form_row(form.title)}}
+       {{ form_row(form.description)}}
+       {{ form_row(form.imagePath)}}
+       {{ form_row(form.infrastructure)}}
+       {{ form_row(form.classroom)}}
+          {{ form_row(form.building)}}
+             {{ form_row(form.time)}}
+                {{ form_row(form.user)}}
+
+    <button type="button" id="get-location-btn">Get Location</button>
+         {{ form_row(form.latitude)}}
+        {{ form_row(form.longitude)}}
+       
+         {# {{ form_row(form.submit)}} #}
+      
+      
     <button  class="btn-circle btn-lg btn-cyan float-end text-white">
+
+     
+
 
         {{ button_label|default('') }}
         <i class="mdi mdi-send fs-3"></i
     </button>
 
-     {# <div class="border-top">
-                    <div class="card-body">
-                      <button type="button" class="btn btn-primary">
-                         {{ button_label|default('Save') }}
-                      </button>
-                    </div>
-                  </div> #}
-
-
-                   {# <div class="col-5 row-4">
-                      <a
-                      type="submit"
-                        class="btn-circle btn-lg btn-cyan float-end text-white"
-                        href="javascript:void(0)"
-                        ><i class="mdi mdi-send fs-3"></i
-                      >
-                      
-                      </a>
-                    </div> #}
+    
+   
 {{ form_end(form) }}
+
+
+ <script>
+    if (navigator.geolocation) {
+    document.getElementById('get-location-btn').addEventListener('click', function() {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            console.log('Latitude:', position.coords.latitude);
+            console.log('Longitude:', position.coords.longitude);
+            document.getElementById('location_latitude').value = position.coords.latitude;
+            document.getElementById('location_longitude').value = position.coords.longitude;
+        });
+    });
+} else {
+    alert('Geolocation is not supported by this browser.');
+}
+</script>
+
+
+
+
+{# 
+ <script>
+    if (navigator.geolocation) {
+    document.getElementById('get-location-btn').addEventListener('click', function() {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            console.log('Latitude:', position.coords.latitude);
+            console.log('Longitude:', position.coords.longitude);
+            document.getElementById('latitude').value = position.coords.latitude;
+            document.getElementById('longitude').value = position.coords.longitude;
+        });
+    });
+} else {
+    alert('Geolocation is not supported by this browser.');
+}
+</script> #}
+
 </div>

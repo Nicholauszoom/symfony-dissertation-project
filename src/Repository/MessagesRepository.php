@@ -68,15 +68,15 @@ class MessagesRepository extends ServiceEntityRepository
  /**
   * @return Messages[] Returns an array of Messages objects
     */
-public function findAllByUserId($userId): array
-{
-    return $this->createQueryBuilder('m')
-        ->andWhere('m.user = :userId')
-        ->setParameter('userId', $userId)
-        ->orderBy('m.time', 'DESC')
-        ->getQuery()
-        ->getResult();
-}
+// public function findAllByUserId($userId): array
+// {
+//     return $this->createQueryBuilder('m')
+//         ->andWhere('m.user = :userId')
+//         ->setParameter('userId', $userId)
+//         ->orderBy('m.time', 'DESC')
+//         ->getQuery()
+//         ->getResult();
+// }
 
 
 }

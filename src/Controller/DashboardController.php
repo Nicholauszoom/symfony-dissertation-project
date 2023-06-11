@@ -11,12 +11,7 @@ class DashboardController extends AbstractController
 {
 
  
-   private $messagesRepository;
-
-    public function __construct(MessagesRepository $messagesRepository){
-        $this->messagesRepository->$messagesRepository;
-       
-    }
+ 
    
      #[Route('/UserDashboard', methods:['GET'], name: 'u_dashb')]
     public function getUserDash(){
@@ -28,10 +23,10 @@ class DashboardController extends AbstractController
      #[Route('/Dashboard', methods:['GET'], name: 'a_dashb')]
     public function getAdmnDash(){
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        $messages = $this->messagesRepository->findAll();
+        
         
         return $this->render('dashboard/admin_dashboard.html.twig',[
-            'messages'=>$messages,
+            
         ]);
     }
 
